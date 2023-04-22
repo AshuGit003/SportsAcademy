@@ -1,8 +1,10 @@
 package com.SportAcademy.Controller;
 
+import com.SportAcademy.Model.CoachDetails;
 import com.SportAcademy.Model.CourseDetails;
 import com.SportAcademy.Model.UserDetails;
 import com.SportAcademy.Repository.UserRepository;
+import com.SportAcademy.Service.CoachService;
 import com.SportAcademy.Service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,9 @@ public class UserController {
     @Autowired
     private CourseService courseService;
 
+    @Autowired
+    private CoachService coachService;
+
     @ModelAttribute
     private void userDetails(Model m, Principal p)
     {
@@ -35,13 +40,8 @@ public class UserController {
         return "user/Home";
     }
 
-//    @GetMapping("/")
-//    public String listCourse(Model model){
-//
-//
-//        return "user/Home";
-//    }
 
+//    course api
     @GetMapping("/course")
     public String course(Model model){
         model.addAttribute("listCourse", courseService.getAllCourses() );
@@ -64,7 +64,7 @@ public class UserController {
 
         //set student as a model attribute to pre-populate the form
         model.addAttribute("course", course);
-        return "user/course";
+        return "user/update_course";
     }
 
     @GetMapping("/deleteCourse/{courseId}")
@@ -87,12 +87,49 @@ public class UserController {
         return "user/add_course";
     }
 
+//coach api
     @GetMapping("/coach")
-    public String coach(){
+    public String coach(Model model){
+        model.addAttribute("listCoach", coachService.getAllCoaches());
         return "user/coach";
     }
 
+    @GetMapping("/showNewCoachForm")
+    public String showNewCoachForm(Model model){
+        //create model attribute to bind form data
+        CoachDetails coach = new CoachDetails();
+        model.addAttribute("coach", coach);
+        return "user/add_coach";
+    }
 
+    @GetMapping("/coachUpdateForm/{coachId}")
+    public  String coachUpdateForm(@PathVariable(value = "coachId") long coachId, Model model){
 
+        //get student from the service
+        CoachDetails coach = coachService.getCoachById(coachId);
 
+        //set student as a model attribute to pre-populate the form
+        model.addAttribute("coach", coach);
+        return "user/coach";
+    }
+
+    @GetMapping("/deleteCoach/{coachId}")
+    public String deleteCoach(@PathVariable(value = "coachId") long coachId){
+
+        //call delete student method
+        this.coachService.deleteCoach(coachId);
+        return "redirect:/user/coach";
+    }
+
+    @PostMapping("/saveCoach")
+    public String saveCoach(@ModelAttribute("coach") CoachDetails coach, HttpSession session){
+        //save student to database
+        CoachDetails coachObj = coachService.createCoach(coach);
+        if(coachObj != null){
+            session.setAttribute("msg","Course Saved");
+        }else {
+            session.setAttribute("msg","Something Went Wrong");
+        }
+        return "user/add_coach";
+    }
 }
