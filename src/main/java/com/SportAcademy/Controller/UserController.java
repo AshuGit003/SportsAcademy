@@ -1,14 +1,15 @@
 package com.SportAcademy.Controller;
 
+import com.SportAcademy.Model.CourseDetails;
 import com.SportAcademy.Model.UserDetails;
 import com.SportAcademy.Repository.UserRepository;
+import com.SportAcademy.Service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
 @Controller
@@ -18,6 +19,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
+    @Autowired
+    private CourseService courseService;
+
     @ModelAttribute
     private void userDetails(Model m, Principal p)
     {
@@ -26,8 +30,69 @@ public class UserController {
         m.addAttribute("user",user);
     }
 
-    @GetMapping("/")
-        public String home(){
+    @GetMapping("")
+        public String home(Model model){
+        model.addAttribute("listCourse", courseService.getAllCourses() );
         return "user/Home";
     }
+
+//    @GetMapping("/")
+//    public String listCourse(Model model){
+//
+//
+//        return "user/Home";
+//    }
+
+    @GetMapping("/course")
+    public String course(){
+        return "user/Home";
+    }
+
+    @GetMapping("/showNewCourseForm")
+    public String showNewCourseForm(Model model){
+        //create model attribute to bind form data
+        CourseDetails course = new CourseDetails();
+        model.addAttribute("course", course);
+        return "user/add_course";
+    }
+
+    @GetMapping("/courseUpdateForm/{courseId}")
+    public  String courseUpdateForm(@PathVariable(value = "courseId") long courseId, Model model){
+
+        //get student from the service
+        CourseDetails course = courseService.getCourseById(courseId);
+
+        //set student as a model attribute to pre-populate the form
+        model.addAttribute("course", course);
+        return "user/Home";
+    }
+
+    @GetMapping("/deleteCourse/{courseId}")
+    public String deleteCourse(@PathVariable(value = "courseId") long courseId){
+
+        //call delete student method
+        this.courseService.deleteCourse(courseId);
+        return "redirect:/user/Home";
+    }
+
+    @PostMapping("/saveCourse")
+    public String saveCourse(@ModelAttribute("course") CourseDetails course, HttpSession session){
+        //save student to database
+       CourseDetails courseObj = courseService.createCourse(course);
+       if(courseObj != null){
+           session.setAttribute("msg","Course Saved");
+       }else {
+           session.setAttribute("msg","Something Went Wrong");
+       }
+        return "user/add_course";
+    }
+
+    @GetMapping("/coach")
+    public String coach(){
+        return "user/coach";
+    }
+
+
+
+
 }

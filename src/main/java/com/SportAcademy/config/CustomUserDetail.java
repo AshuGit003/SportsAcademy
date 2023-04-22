@@ -9,6 +9,8 @@ import java.util.Collection;
 
 public class CustomUserDetail implements UserDetails {
 
+    private boolean accountNonLocked;
+    private boolean enabled;
     private com.SportAcademy.Model.UserDetails user;
 
     public CustomUserDetail(com.SportAcademy.Model.UserDetails user) {
@@ -41,6 +43,10 @@ public class CustomUserDetail implements UserDetails {
         return true;
     }
 
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
@@ -49,5 +55,9 @@ public class CustomUserDetail implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
