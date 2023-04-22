@@ -31,8 +31,7 @@ public class UserController {
     }
 
     @GetMapping("")
-        public String home(Model model){
-        model.addAttribute("listCourse", courseService.getAllCourses() );
+        public String home(){
         return "user/Home";
     }
 
@@ -44,8 +43,9 @@ public class UserController {
 //    }
 
     @GetMapping("/course")
-    public String course(){
-        return "user/Home";
+    public String course(Model model){
+        model.addAttribute("listCourse", courseService.getAllCourses() );
+        return "user/course";
     }
 
     @GetMapping("/showNewCourseForm")
@@ -64,7 +64,7 @@ public class UserController {
 
         //set student as a model attribute to pre-populate the form
         model.addAttribute("course", course);
-        return "user/Home";
+        return "user/course";
     }
 
     @GetMapping("/deleteCourse/{courseId}")
@@ -72,7 +72,7 @@ public class UserController {
 
         //call delete student method
         this.courseService.deleteCourse(courseId);
-        return "redirect:/user/Home";
+        return "redirect:/user/course";
     }
 
     @PostMapping("/saveCourse")

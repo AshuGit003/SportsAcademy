@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/courses")
+@RequestMapping("user/courses")
 public class CourseController {
 
     @Autowired
     private CourseService courseService;
 
-    @GetMapping
-    public List<CourseDetails> getAllCourses() {
-        return courseService.getAllCourses();
-    }
+//    @GetMapping
+//    public List<CourseDetails> getAllCourses() {
+//        return courseService.getAllCourses();
+//    }
 
     @GetMapping("/{id}")
     public CourseDetails getCourseById(@PathVariable Long id) {
