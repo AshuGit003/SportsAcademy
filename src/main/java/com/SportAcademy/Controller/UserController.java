@@ -110,7 +110,7 @@ public class UserController {
 
         //set student as a model attribute to pre-populate the form
         model.addAttribute("coach", coach);
-        return "user/coach";
+        return "user/update_coach";
     }
 
     @GetMapping("/deleteCoach/{coachId}")
