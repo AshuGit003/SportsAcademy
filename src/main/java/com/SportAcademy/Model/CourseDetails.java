@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -17,7 +18,7 @@ public class CourseDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String courseName;
@@ -25,7 +26,8 @@ public class CourseDetails {
     @Column(nullable = false)
     private String courseDescription;
 
-    @Column(nullable = false)
-    private String courseFees;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private Set<CourseCards> courseCards;
+
 }
 

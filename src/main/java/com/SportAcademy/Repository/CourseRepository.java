@@ -10,4 +10,6 @@ public interface CourseRepository extends JpaRepository<CourseDetails,Integer> {
     Optional<CourseDetails> findById(Long id);
 
     void deleteById(Long id);
+
+    CourseDetails getById(Long id);
 }

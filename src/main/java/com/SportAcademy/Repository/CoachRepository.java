@@ -10,4 +10,6 @@ public interface CoachRepository extends JpaRepository<CoachDetails,Integer> {
     Optional<CoachDetails> findById(Long id);
 
     void deleteById(Long id);
+
+    CoachDetails getById(Long id);
 }

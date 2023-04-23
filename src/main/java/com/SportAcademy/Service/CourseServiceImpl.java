@@ -38,7 +38,6 @@ public class CourseServiceImpl implements CourseService{
                 .orElseThrow(() -> new EntityNotFoundException("Course not found with id: " + id));
         existingCourse.setCourseName(course.getCourseName());
         existingCourse.setCourseDescription(course.getCourseDescription());
-        existingCourse.setCourseFees(course.getCourseFees());
         return courseRepository.save(existingCourse);
     }
 

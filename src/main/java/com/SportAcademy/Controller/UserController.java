@@ -1,10 +1,14 @@
 package com.SportAcademy.Controller;
 
 import com.SportAcademy.Model.CoachDetails;
+import com.SportAcademy.Model.CourseCards;
 import com.SportAcademy.Model.CourseDetails;
 import com.SportAcademy.Model.UserDetails;
+import com.SportAcademy.Repository.CoachRepository;
+import com.SportAcademy.Repository.CourseRepository;
 import com.SportAcademy.Repository.UserRepository;
 import com.SportAcademy.Service.CoachService;
+import com.SportAcademy.Service.CourseCardService;
 import com.SportAcademy.Service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +26,19 @@ public class UserController {
     private UserRepository userRepo;
 
     @Autowired
+    private CourseRepository courseRepository;
+
+    @Autowired
+    private CoachRepository coachRepository;
+
+    @Autowired
     private CourseService courseService;
 
     @Autowired
     private CoachService coachService;
+
+    @Autowired
+    private CourseCardService courseCardService;
 
     @ModelAttribute
     private void userDetails(Model m, Principal p)
@@ -132,4 +145,55 @@ public class UserController {
         }
         return "user/add_coach";
     }
+
+    //Course Cards api
+    @GetMapping("/courseCards")
+    public String courseCards(Model model) {
+        model.addAttribute("listCourseCards", courseCardService.getAllCourseCards());
+        return "user/courseCards";
+    }
+
+    @GetMapping("/showNewCourseCardForm")
+    public String showNewCourseCardForm(Model model){
+        //create model attribute to bind form data
+        model.addAttribute("courseCard", new CourseCards());
+        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("coaches", coachRepository.findAll());
+        return "user/add_courseCard";
+    }
+
+    @GetMapping("/courseCardUpdateForm/{courseCardId}")
+    public  String courseCardUpdateForm(@PathVariable(value = "courseCardId") long courseCardId, Model model){
+
+        //get student from the service
+        CourseCards cards = courseCardService.getCourseCardsById(courseCardId);
+
+        //set student as a model attribute to pre-populate the form
+        model.addAttribute("courseCard", cards);
+        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("coaches", coachRepository.findAll());
+        return "user/update_courseCard";
+    }
+
+    @GetMapping("/deleteCourseCard/{courseCardId}")
+    public String deleteCourseCard(@PathVariable(value = "courseCardId") long courseCardId){
+
+        //call delete student method
+        this.courseCardService.deleteCourseCards(courseCardId);
+        return "redirect:/user/courseCards";
+    }
+
+    @PostMapping("/saveCourseCard")
+    public String saveCourseCard(@ModelAttribute("courseCard") CourseCards courseCards, HttpSession session){
+        //save student to database
+        CourseCards cardObj = courseCardService.createCourseCards(courseCards);
+        if(cardObj != null){
+            session.setAttribute("msg","Card Saved");
+        }else {
+            session.setAttribute("msg","Something Went Wrong");
+        }
+        return "user/add_courseCard";
+    }
 }
+
+

@@ -2,6 +2,7 @@ package com.SportAcademy.Model;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -28,4 +29,7 @@ public class CoachDetails {
 
     @Column(nullable = true)
     private String description;
+
+    @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL)
+    private Set<CourseCards> courseCards;
 }
