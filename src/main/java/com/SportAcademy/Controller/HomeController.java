@@ -1,9 +1,11 @@
 package com.SportAcademy.Controller;
 
 import com.SportAcademy.Model.UserDetails;
+import com.SportAcademy.Service.CourseCardService;
 import com.SportAcademy.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,9 @@ public class HomeController {
 
     @Autowired
     public UserService userService;
+
+    @Autowired
+    private CourseCardService courseCardService;
 
     @GetMapping("/")
     public String index() {
@@ -45,5 +50,11 @@ public class HomeController {
             }
         }
         return "redirect:/register";
+    }
+
+    @GetMapping("/getCourseCards")
+    public String getCourseCards(Model model) {
+        model.addAttribute("listCourseCards", courseCardService.getAllCourseCards());
+        return "courses";
     }
 }

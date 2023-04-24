@@ -12,7 +12,8 @@ import javax.persistence.Id;
 @Table(name = "course_cards")
 public class CourseCards {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "course_card_seq")
+    @SequenceGenerator(name = "course_card_seq", sequenceName = "course_card_sequence", allocationSize = 1)
     private Long id;
 
     @Column(name = "image_url")

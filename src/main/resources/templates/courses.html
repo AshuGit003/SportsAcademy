@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Courses</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">Sports Academy</a>
+  <button class="navbar-toggler" type="button"
+          data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link active"
+                              aria-current="page" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link active"
+                              aria-current="page" href="/getCourseCards">Courses</a></li>
+    </ul>
+    <div class="max-2 ml-1">
+      <!--            <button class="btn btn-success me-2" type="button" onclick="location.href='register'">SignUp-->
+      <!--            </button>-->
+      <!--            <button class="btn btn-success" type="button" onclick="location.href='signin'">Login</button>-->
+      <a class="nav-link active nav-item"
+         aria-current="page" href="signin">Admin</a>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+
+<main role="main">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Select Your Course</h1>
+      <p class="lead text-muted">Something short and leading about the collection below—its contents, the
+        creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it
+        entirely.</p>
+    </div>
+  </section>
+
+  <div class="row row-cols-3 mx-lg-4 pb-3" th:if="${#lists.isEmpty(listCourseCards)}">
+    <div class="col text-center">
+      <p>No course cards available.</p>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4 mx-lg-4 pb-3">
+    <div class="col text-center my-2" th:each="courseCard : ${listCourseCards}">
+      <div class="card h-100">
+        <img th:src="@{'img/'+${courseCard.imageUrl}}" class="card-img-top" width="200" height="200" alt="file not found">
+        <div class="card-body">
+          <div class="desc">
+            <div class="car-name ellipsis">
+              <h3 th:text="${courseCard.course.courseName}"></h3>
+            </div>
+            <div class="car-item-extras">
+              <div class="car-item-message">
+                <div th:text="'Driven ' + ${courseCard.coach.firstName} + ' kms'"></div>
+                <div class="font-Weight-bold mt-2">
+                  <h2 th:text="'₹ ' + ${courseCard.courseFees}"></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--        <div class="mt-2 mb-2">-->
+<!--          <a th:href="@{/courseCards/{id}(id=${courseCard.id})}" class="btn btn-primary">Apply</a>-->
+<!--        </div>-->
+<!--        <div class="card-footer">-->
+<!--          <small class="text-muted" th:text="'Last updated ' + ${courseCard.lastUpdated} + ' ago'"></small>-->
+<!--        </div>-->
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+</body>
+</html>
