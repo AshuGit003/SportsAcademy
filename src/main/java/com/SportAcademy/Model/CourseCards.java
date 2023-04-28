@@ -10,11 +10,10 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "course_cards")
+@Table(name = "courseCards")
 public class CourseCards {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "course_card_seq")
-    @SequenceGenerator(name = "course_card_seq", sequenceName = "course_card_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "image_url")
@@ -31,6 +30,6 @@ public class CourseCards {
     @JoinColumn(name = "coach_id", nullable = false,referencedColumnName = "id")
     private CoachDetails coach;
 
-    @OneToMany(mappedBy = "courseCards", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "courseCards", cascade = CascadeType.ALL)
     private Set<ApplicationForm> applicationForms;
 }

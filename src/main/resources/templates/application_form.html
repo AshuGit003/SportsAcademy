@@ -103,10 +103,11 @@
           </div>
       </div>
       <div class="form-group row">
-          <label for="courseFees" class="col-sm-3 col-form-label">Course Fees:</label>
+          <label for="course_Fees" class="col-sm-3 col-form-label">Course Fees:</label>
           <div class="col-sm-9">
-              <input type="hidden" name="courseCardId" th:value="${courseCard.id}" />
-              <input type="text" class="form-control" id="courseFees" th:value="${courseCard.courseFees}" readonly>
+              <select id="course_Fees" name="courseFees" class="form-control" th:field="*{courseCards.id}" readonly>
+                  <option th:value="${courseCard.id}" th:text="${courseCard.courseFees}"></option>
+              </select>
           </div>
       </div>
       <div class="form-group row">

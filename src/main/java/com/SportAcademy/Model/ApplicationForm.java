@@ -20,7 +20,7 @@ public class ApplicationForm {
     @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "dob", columnDefinition = "DATE FORMAT 'yyyy-MM-dd'")
+    @Column(name = "dob")
     private LocalDate dob;
 
     @Column(name = "gender")
