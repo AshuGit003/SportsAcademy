@@ -23,7 +23,7 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public CourseDetails getCourseById(Long id) {
-        return (CourseDetails) courseRepository.findById(id)
+        return courseRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Course not found with id: " + id));
     }
 
@@ -34,7 +34,7 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public CourseDetails updateCourse(Long id, CourseDetails course) {
-        CourseDetails existingCourse = (CourseDetails) courseRepository.findById(id)
+        CourseDetails existingCourse = courseRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Course not found with id: " + id));
         existingCourse.setCourseName(course.getCourseName());
         existingCourse.setCourseDescription(course.getCourseDescription());

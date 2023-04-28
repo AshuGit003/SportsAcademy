@@ -23,7 +23,7 @@ public class CoachServiceImpl implements CoachService {
 
     @Override
     public CoachDetails getCoachById(Long id) {
-        return (CoachDetails) coachRepository.findById(id)
+        return coachRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Coach not found with id: " + id));
     }
 
@@ -34,7 +34,7 @@ public class CoachServiceImpl implements CoachService {
 
     @Override
     public CoachDetails updateCoach(Long id, CoachDetails course) {
-        CoachDetails existingCoach = (CoachDetails) coachRepository.findById(id)
+        CoachDetails existingCoach = coachRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Coach not found with id: " + id));
         existingCoach.setFirstName(course.getFirstName());
         existingCoach.setLastName(course.getLastName());

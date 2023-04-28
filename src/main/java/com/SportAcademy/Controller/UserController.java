@@ -1,9 +1,6 @@
 package com.SportAcademy.Controller;
 
-import com.SportAcademy.Model.CoachDetails;
-import com.SportAcademy.Model.CourseCards;
-import com.SportAcademy.Model.CourseDetails;
-import com.SportAcademy.Model.UserDetails;
+import com.SportAcademy.Model.*;
 import com.SportAcademy.Repository.CoachRepository;
 import com.SportAcademy.Repository.CourseRepository;
 import com.SportAcademy.Repository.UserRepository;

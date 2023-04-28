@@ -29,5 +29,8 @@ public class CourseDetails {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private Set<CourseCards> courseCards;
 
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private Set<ApplicationForm> applicationForms;
+
 }
 

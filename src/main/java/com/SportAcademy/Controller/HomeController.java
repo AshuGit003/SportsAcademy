@@ -57,4 +57,6 @@ public class HomeController {
         model.addAttribute("listCourseCards", courseCardService.getAllCourseCards());
         return "courses";
     }
+
+
 }
