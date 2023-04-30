@@ -25,12 +25,5 @@ public class CourseDetails {
 
     @Column(nullable = false)
     private String courseDescription;
-
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private Set<CourseCards> courseCards;
-
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private Set<ApplicationForm> applicationForms;
-
 }
 

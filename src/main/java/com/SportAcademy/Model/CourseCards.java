@@ -29,7 +29,4 @@ public class CourseCards {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "coach_id", nullable = false,referencedColumnName = "id")
     private CoachDetails coach;
-
-    @OneToMany(mappedBy = "courseCards", cascade = CascadeType.ALL)
-    private Set<ApplicationForm> applicationForms;
 }

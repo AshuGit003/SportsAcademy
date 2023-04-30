@@ -29,10 +29,4 @@ public class CoachDetails {
 
     @Column(nullable = true)
     private String description;
-
-    @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL)
-    private Set<CourseCards> courseCards;
-
-    @OneToMany(mappedBy = "coach", cascade = CascadeType.ALL)
-    private Set<ApplicationForm> applicationForms;
 }

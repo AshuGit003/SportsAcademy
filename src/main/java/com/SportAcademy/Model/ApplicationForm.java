@@ -21,7 +21,7 @@ public class ApplicationForm {
     private String lastName;
 
     @Column(name = "dob")
-    private LocalDate dob;
+    private String dob;
 
     @Column(name = "gender")
     private String gender;
