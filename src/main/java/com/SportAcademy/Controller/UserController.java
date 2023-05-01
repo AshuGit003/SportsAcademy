@@ -4,6 +4,7 @@ import com.SportAcademy.Model.*;
 import com.SportAcademy.Repository.CoachRepository;
 import com.SportAcademy.Repository.CourseRepository;
 import com.SportAcademy.Repository.UserRepository;
+import com.SportAcademy.Service.ApplicationFormService;
 import com.SportAcademy.Service.CoachService;
 import com.SportAcademy.Service.CourseCardService;
 import com.SportAcademy.Service.CourseService;
@@ -36,6 +37,9 @@ public class UserController {
 
     @Autowired
     private CourseCardService courseCardService;
+
+    @Autowired
+    private ApplicationFormService applicationFormService;
 
     @ModelAttribute
     private void userDetails(Model m, Principal p)
@@ -190,6 +194,13 @@ public class UserController {
             session.setAttribute("msg","Something Went Wrong");
         }
         return "user/add_courseCard";
+    }
+
+    //application api
+    @GetMapping("/applicationFormList")
+    public String application(Model model) {
+        model.addAttribute("listApplicationForm", applicationFormService.getAllApplicationForm());
+        return "user/application_list";
     }
 }
 
