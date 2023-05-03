@@ -7,17 +7,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .navbar-brand li a{font-size: 35px;}
+        .navbar-nav li a {font-size: 18px;}
+    </style>
+
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Sports Academy</a>
-    <button class="navbar-toggler" type="button"
-            data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand" href="#">
+        <img src="../static/img/GAP.jpg" th:src="@{img/GAP.jpg}" width="40" height="40" class="d-inline-block align-center" alt="Logo">
+        Sports Academy</a>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link active"
@@ -25,12 +28,14 @@
             <li class="nav-item"><a class="nav-link active"
                                     aria-current="page" href="/getCourseCards">Courses</a></li>
         </ul>
-        <div class="max-2 ml-1">
-<!--            <button class="btn btn-success me-2" type="button" onclick="location.href='register'">SignUp-->
-<!--            </button>-->
-<!--            <button class="btn btn-success" type="button" onclick="location.href='signin'">Login</button>-->
-            <a class="nav-link active nav-item"
-                                  aria-current="page" href="signin">Admin</a>
+        <div class="max-2 ml-1 align-middle">
+            <!--            <button class="btn btn-success me-2" type="button" onclick="location.href='register'">SignUp-->
+            <!--            </button>-->
+            <!--            <button class="btn btn-success" type="button" onclick="location.href='signin'">Login</button>-->
+            <a class="nav-link active" aria-current="page" href="signin">
+                <i class="far fa-user-circle fa-lg" style="color: #ffffff;"></i>
+                <span class="ml-2">Admin</span></a>
+
         </div>
     </div>
 </nav>
@@ -45,13 +50,13 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="../static/img/img1.jpg" width="800" height="550" alt="First slide"
+            <img class="d-block w-100" src="../static/img/GAP.jpg" width="800" height="550" alt="First slide"
                  th:src="@{img/img1.jpg}"/>
             <div class="container">
                 <div class="carousel-caption text-center">
                     <h1>Welcome To Our Site</h1>
                     <p>Unlock your athletic potential with our programs</p>
-                    <p><a class="btn btn-lg btn-primary" href="/register">Sign up today</a></p>
+<!--                    <p><a class="btn btn-lg btn-primary" href="/register">Sign up today</a></p>-->
                 </div>
             </div>
         </div>
@@ -73,7 +78,7 @@
                 <div class="carousel-caption text-right">
                     <h1>Become a better athlete and a better person with us</h1>
                     <p>Contact with us to know more about us.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="/getCourseCards">Browse courses</a></p>
                 </div>
             </div>
         </div>
@@ -93,25 +98,30 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
         <div class="col-lg-4 text-center">
-            <img class="bd-placeholder-img rounded-circle" src="../static/img/VK.jpg" width="180" height="180" alt="First Legend"
-                 th:src="@{img/VK.jpg}"/>
+            <img class="bd-placeholder-img rounded-circle" src="../static/img/Chettri.jpg" width="180" height="180"
+                 alt="First Legend"
+                 th:src="@{img/Chettri.jpg}"/>
 
-            <h2>Virat Kohli</h2>
-            <p>"I love playing under pressure. In fact, if there’s no pressure, then I’m not in the perfect zone."</p>
+            <h2>Sunil Chhetri</h2>
+            <p>"The day I think I'm not enjoying the game and contributing the way I would like to, I'll hang up my
+                boots."</p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
-            <img class="bd-placeholder-img rounded-circle" src="../static/img/MS.jpg" width="180" height="180" alt="First Legend"
+            <img class="bd-placeholder-img rounded-circle" src="../static/img/MS.jpg" width="180" height="180"
+                 alt="First Legend"
                  th:src="@{img/MS.jpg}"/>
 
             <h2>MS Dhoni</h2>
             <p> "Face the failure, until the failure fails to face you."</p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4 text-center">
-            <img class="bd-placeholder-img rounded-circle" src="../static/img/Hitman.jpg" width="180" height="180" alt="First Legend"
-                 th:src="@{img/Hitman.jpg}"/>
+            <img class="bd-placeholder-img rounded-circle" src="../static/img/PV.jpg" width="180" height="180"
+                 alt="First Legend"
+                 th:src="@{img/PV.jpg}"/>
 
-            <h2>Rohit Sharma</h2>
-            <p>"To each his own, but my process of preparation is based on conditions, not opposition."</p>
+            <h2>PV Sindhu</h2>
+            <p>"Your dreams are what define your individuality. They have the power to give you wings and make you fly
+                high."</p>
         </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 </div>
@@ -123,11 +133,15 @@
 
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading">Expert coaching for athletes of all levels. <span class="text-muted">It’ll blow your mind.</span></h2>
-            <p class="lead">Our experienced coaches are passionate about helping athletes reach their full potential. They use proven training methods and techniques to help you develop the skills and knowledge you need to excel in your sport. Whether you're looking to improve your technique, increase your strength and endurance, or fine-tune your mental game, our coaches have the expertise to help you get there.</p>
+            <h2 class="featurette-heading">Expert coaching for athletes of all levels. <span class="text-muted">It’ll blow your mind.</span>
+            </h2>
+            <p class="lead">Our experienced coaches are passionate about helping athletes reach their full potential.
+                They use proven training methods and techniques to help you develop the skills and knowledge you need to
+                excel in your sport. Whether you're looking to improve your technique, increase your strength and
+                endurance, or fine-tune your mental game, our coaches have the expertise to help you get there.</p>
         </div>
         <div class="col-md-5">
-            <img class="d-block w-100" src="../static/img/Coaching.jpg" width="500" height="400" alt="First Featurette"
+            <img class="d-block w-100" src="../static/img/Coaching.jpg" width="400" height="300" alt="First Featurette"
                  th:src="@{img/Coaching.jpg}"/>
 
         </div>
@@ -137,11 +151,16 @@
 
     <div class="row featurette">
         <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Community events and competitions for a fun and supportive atmosphere. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">At our sports academy, we believe that a fun and supportive atmosphere is key to helping athletes achieve their full potential. That's why we work hard to create an environment that fosters camaraderie, sportsmanship, and teamwork. Whether you're training for a competition or just looking to stay active and have fun, you'll find a welcoming community of athletes who share your passion at our sports academy.</p>
+            <h2 class="featurette-heading">Community events and competitions for a fun and supportive atmosphere. <span
+                    class="text-muted">See for yourself.</span></h2>
+            <p class="lead">At our sports academy, we believe that a fun and supportive atmosphere is key to helping
+                athletes achieve their full potential. That's why we work hard to create an environment that fosters
+                camaraderie, sportsmanship, and teamwork. Whether you're training for a competition or just looking to
+                stay active and have fun, you'll find a welcoming community of athletes who share your passion at our
+                sports academy.</p>
         </div>
         <div class="col-md-5 order-md-1">
-            <img class="d-block w-100" src="../static/img/Competion.jpg" width="500" height="400" alt="First Featurette"
+            <img class="d-block w-100" src="../static/img/Competion.jpg" width="400" height="300" alt="First Featurette"
                  th:src="@{img/Competion.jpg}"/>
 
         </div>
@@ -151,11 +170,14 @@
 
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading">Academic support for student-athletes. <span class="text-muted">our student-athletes succeed both on and off the field.</span></h2>
-            <p class="lead">At our sports academy, we believe that academic success is just as important as athletic success. We are committed to providing our student-athletes with the support and resources they need to excel in both areas.</p>
+            <h2 class="featurette-heading">Academic support for student-athletes. <span class="text-muted">our student-athletes succeed both on and off the field.</span>
+            </h2>
+            <p class="lead">At our sports academy, we believe that academic success is just as important as athletic
+                success. We are committed to providing our student-athletes with the support and resources they need to
+                excel in both areas.</p>
         </div>
         <div class="col-md-5">
-            <img class="d-block w-100" src="../static/img/Athlete.jpg" width="500" height="400" alt="First Featurette"
+            <img class="d-block w-100" src="../static/img/Athlete.jpg" width="400" height="300" alt="First Featurette"
                  th:src="@{img/Athlete.jpg}"/>
 
         </div>

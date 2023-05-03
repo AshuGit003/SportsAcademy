@@ -56,6 +56,6 @@ public class ApplicationFormController {
         }else {
             session.setAttribute("msg","Something Went Wrong");
         }
-        return "courses";
+        return "application_form";
     }
 }
