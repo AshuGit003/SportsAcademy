@@ -140,7 +140,7 @@ public class UserController {
         //save student to database
         CoachDetails coachObj = coachService.createCoach(coach);
         if(coachObj != null){
-            session.setAttribute("msg","Course Saved");
+            session.setAttribute("msg","Coach Saved");
         }else {
             session.setAttribute("msg","Something Went Wrong");
         }

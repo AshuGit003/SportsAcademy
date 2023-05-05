@@ -21,12 +21,21 @@
         <img src="../static/img/GAP.jpg" th:src="@{img/GAP.jpg}" width="40" height="40" class="d-inline-block align-center" alt="Logo">
         Sports Academy</a>
 
+    <button class="navbar-toggler" type="button"
+            data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link active"
                                     aria-current="page" href="/">Home</a></li>
             <li class="nav-item"><a class="nav-link active"
                                     aria-current="page" href="/getCourseCards">Courses</a></li>
+            <li class="nav-item"><a class="nav-link active"
+                                    aria-current="page" href="#">Contact</a></li>
         </ul>
         <div class="max-2 ml-1 align-middle">
             <!--            <button class="btn btn-success me-2" type="button" onclick="location.href='register'">SignUp-->
@@ -42,7 +51,7 @@
 <br>
 <br>
 
-<div id="myCarousel" class="carousel slide py-1" data-ride="carousel">
+<div id="myCarousel" class="carousel slide py-1 " data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -190,9 +199,47 @@
 
 
 <!-- Footer -->
-<footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p>© 2023–2024 AG Sports Academy, Inc. · <a href="/">Privacy</a> · <a href="/">Terms</a></p>
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-facebook-f"></i
+            ></a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-twitter"></i
+            ></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-google"></i
+            ></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" th:href="@{https://instagram.com/ashish_gawade03?igshid=ZDdkNTZiNTM=}" href="https://instagram.com/ashish_gawade03?igshid=ZDdkNTZiNTM=" role="button"
+            ><i class="fab fa-instagram"></i
+            ></a>
+
+
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-github"></i
+            ></a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="/">GAP Sport Academy</a>
+    </div>
+    <!-- Copyright -->
 </footer>
 
 

@@ -21,6 +21,13 @@
              class="d-inline-block align-center" alt="Logo">
         Sports Academy</a>
 
+    <button class="navbar-toggler" type="button"
+            data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link active"
@@ -58,15 +65,15 @@
         </div>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4 mx-lg-4 pb-3">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-lg-3 px-3 pb-3">
         <div class="col text-center my-2" th:each="courseCard : ${listCourseCards}">
-            <div class="card h-80 shadow-lg p-3 mb-5 bg-white rounded">
-                <img th:src="@{'img/'+${courseCard.imageUrl}}" class="card-img-top" width="200" height="300"
+            <div class="card h-80 shadow-lg p-3 mx-5 mb-5 bg-white rounded-lg">
+                <img th:src="@{'img/'+${courseCard.imageUrl}}" class="card-img-top rounded" width="50" height="350"
                      alt="file not found">
                 <div class="card-body mt-3">
                     <div class="desc text-dark">
                         <h3 th:text="${courseCard.course.courseName}"></h3>
-                        <h4 th:text="'Coach: ' + ${courseCard.coach.firstName}"></h4>
+                        <h4 th:text="'Coach: ' + ${courseCard.coach.firstName}+' '+ ${courseCard.coach.lastName} "></h4>
                         <div class="font-Weight-bold mt-3 mb-2">
                             <h3 th:text="'Fees: ₹ ' + ${courseCard.courseFees}"></h3>
                         </div>
