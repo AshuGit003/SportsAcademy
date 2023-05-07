@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .navbar-brand li a{font-size: 35px;}
+        .navbar-nav li a {font-size: 18px;}
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="../static/img/GAP.jpg" th:src="@{img/GAP.jpg}" width="40" height="40"
+             class="d-inline-block align-center" alt="Logo">
+        Sports Academy</a>
+
+    <button class="navbar-toggler" type="button"
+            data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link active"
+                                    aria-current="page" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link active"
+                                    aria-current="page" href="/getCourseCards">Courses</a></li>
+            <li class="nav-item"><a class="nav-link active"
+                                    aria-current="page" href="/getContactPage">Contact</a></li>
+        </ul>
+        <div class="max-2 ml-1 align-middle">
+            <!--            <button class="btn btn-success me-2" type="button" onclick="location.href='register'">SignUp-->
+            <!--            </button>-->
+            <!--            <button class="btn btn-success" type="button" onclick="location.href='signin'">Login</button>-->
+            <a class="nav-link active" aria-current="page" href="signin">
+                <i class="far fa-user-circle fa-lg" style="color: #ffffff;"></i>
+                <span class="ml-2">Admin</span></a>
+
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+
+<div class="container mt-5">
+    <div class="container text-center mt-5">
+        <h1>CONTACT US</h1>
+    </div>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    <th:block th:if="${session.msg}">
+        <div class="alert alert-success shadow" role="alert" style="border-left:#155724 5px solid; border-radius: 0px">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="True" style="color:#155724">&times;</span>
+            </button>
+            <div class="row">
+                <svg width="1.25em" height="1.25em" viewBox="0 0 16 16" class="m-1 bi bi-shield-fill-check"
+                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M8 .5c-.662 0-1.77.249-2.813.525a61.11 61.11 0 0 0-2.772.815 1.454 1.454 0 0 0-1.003 1.184c-.573 4.197.756 7.307 2.368 9.365a11.192 11.192 0 0 0 2.417 2.3c.371.256.715.451 1.007.586.27.124.558.225.796.225s.527-.101.796-.225c.292-.135.636-.33 1.007-.586a11.191 11.191 0 0 0 2.418-2.3c1.611-2.058 2.94-5.168 2.367-9.365a1.454 1.454 0 0 0-1.003-1.184 61.09 61.09 0 0 0-2.772-.815C9.77.749 8.663.5 8 .5zm2.854 6.354a.5.5 0 0 0-.708-.708L7.5 8.793 6.354 7.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                </svg>
+                <p style="font-size:18px" class="mb-0 font-weight-light"><b class="mr-1">[[${session.msg}]]</b>Successfully
+                    ! Go to Home Page <a href="/" class="alert-link">Home</a></p>
+            </div>
+        </div>
+        <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+    </th:block>
+    <form th:action="@{/saveContactUs}" method="post" th:object="${contactUs}">
+        <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">Email:</label>
+            <input type="text" class="form-control" id="email" name="email" th:field="*{email}"
+                   required>
+        </div>
+        <div class="form-group row">
+            <label for="fullName" class="col-sm-3 col-form-label">Full Name:</label>
+            <input type="text" class="form-control" id="fullName" name="fullName" th:field="*{fullName}"
+                   required>
+        </div>
+        <div class="form-group row">
+            <label for="query" class="col-sm-3 col-form-label">Write Your Query Here:</label>
+            <textarea class="form-control" id="query" name="query" rows="3"
+                      th:field="*{query}" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-info col-2"> Save</button>
+    </form>
+
+    <div class="container pt-3">
+        <div class="fs-4 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill mr-1"
+                 viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+            </svg>
+            020-789654
+        </div>
+        <div class="fs-4 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope-fill mr-1"
+                 viewBox="0 0 16 16">
+                <path
+                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z">
+                </path>
+            </svg>
+            xyz@gmail.com
+        </div>
+        <div class="fs-4 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt-fill mr-1"
+                 viewBox="0 0 16 16">
+                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+            </svg>
+            202,Silicon Vally,Colambia
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="bg-dark text-center text-white fixed-bottom">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-facebook-f"></i
+            ></a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-twitter"></i
+            ></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-google"></i
+            ></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1"
+               th:href="@{https://instagram.com/ashish_gawade03?igshid=ZDdkNTZiNTM=}"
+               href="https://instagram.com/ashish_gawade03?igshid=ZDdkNTZiNTM=" role="button"
+            ><i class="fab fa-instagram"></i
+            ></a>
+
+
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-github"></i
+            ></a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="/">GAP Sport Academy</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

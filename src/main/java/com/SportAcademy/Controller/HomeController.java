@@ -1,5 +1,6 @@
 package com.SportAcademy.Controller;
 
+import com.SportAcademy.Model.ContactUs;
 import com.SportAcademy.Model.UserDetails;
 import com.SportAcademy.Service.CourseCardService;
 import com.SportAcademy.Service.UserService;
@@ -58,5 +59,10 @@ public class HomeController {
         return "courses";
     }
 
-
+    @GetMapping("/getContactPage")
+    public String getContactPage(Model model) {
+        ContactUs contact = new ContactUs();
+        model.addAttribute("contactUs",contact);
+        return "contact";
+    }
 }
